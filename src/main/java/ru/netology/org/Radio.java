@@ -5,7 +5,6 @@ public class Radio {
     private int currentVolume;
     private int enterStation;
 
-
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
@@ -39,7 +38,7 @@ public class Radio {
     }
 
     public void enterStation(int enterStation) {
-        if (enterStation >= 0) {
+        if (enterStation > 0) {
             enterStation = enterStation;
         }
         if (enterStation >= 10) {
@@ -47,7 +46,6 @@ public class Radio {
         }
         this.enterStation = enterStation;
     }
-
 
     public void setCurrentVolumeUp(int currentVolume) {
         if (currentVolume >= 10) {
@@ -68,8 +66,6 @@ public class Radio {
         }
         this.currentVolume = currentVolume;
     }
-
-
 }
 
 

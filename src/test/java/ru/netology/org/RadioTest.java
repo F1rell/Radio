@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
 
-
     @Test
     public void nextStation() {
         Radio radio = new Radio();
@@ -52,6 +51,24 @@ public class RadioTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void enterRadioStationIfLargestLimit() {
+        Radio radio = new Radio();
+        radio.enterStation(11);
+        int expected = 10;
+        int actual = radio.getEnterStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void enterRadioStationIfRadiostationNegative() {
+        Radio radio = new Radio();
+        radio.enterStation(0);
+        int expected = 0;
+        int actual = radio.getEnterStation();
+        assertEquals(expected, actual);
+    }
+
 
     @Test
     public void volumeNextStep() {
@@ -80,7 +97,6 @@ public class RadioTest {
         assertEquals(expected, actual);
     }
 
-
     @Test
     public void volumeNextIfVolumeLevelZero() {
         Radio radio = new Radio();
@@ -89,6 +105,4 @@ public class RadioTest {
         int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
-
-
 }
