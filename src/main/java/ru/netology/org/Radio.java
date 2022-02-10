@@ -52,7 +52,7 @@ public class Radio {
         if (currentVolume < 10) {
             currentVolume++;
         } else {
-            currentRadioStation = 10;
+            currentVolume = 10;
         }
     }
 
