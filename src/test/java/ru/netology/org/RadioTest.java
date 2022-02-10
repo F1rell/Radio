@@ -25,21 +25,21 @@ public class RadioTest {
     }
 
     @Test
-    public void nextStation() {
-        Radio radio = new Radio();
-        radio.setCurrentRadioStation(5);
-        radio.setNextRadioStation();
-        int expected = 6;
-        int actual = radio.getCurrentRadioStation();
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public void nextStationIfMaxStation() {
         Radio radio = new Radio();
         radio.setCurrentRadioStation(9);
         radio.setNextRadioStation();
         int expected = 0;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void nextStation() {
+        Radio radio = new Radio();
+        radio.setCurrentRadioStation(5);
+        radio.setNextRadioStation();
+        int expected = 6;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
