@@ -3,6 +3,19 @@ package ru.netology.org;
 public class Radio {
     private int currentRadioStation;
     private int currentVolume;
+    private int maxNumberStation = 10;
+
+    public Radio(int maxNumberStation) {
+        this.maxNumberStation = maxNumberStation;
+    }
+
+    public Radio() {
+    }
+
+
+    public int getMaxNumberStation() {
+        return maxNumberStation;
+    }
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
@@ -13,7 +26,7 @@ public class Radio {
     }
 
     public void setCurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation > 9) {
+        if (currentRadioStation > maxNumberStation) {
             return;
         }
         if (currentRadioStation <= 0) {
@@ -23,9 +36,10 @@ public class Radio {
     }
 
     public void setNextRadioStation() {
-        if (currentRadioStation < 9) {
+        if (currentRadioStation < maxNumberStation) {
             currentRadioStation++;
-        } else {
+        }
+        if (currentRadioStation == maxNumberStation) {
             currentRadioStation = 0;
         }
     }
@@ -34,12 +48,12 @@ public class Radio {
         if (currentRadioStation > 0) {
             currentRadioStation--;
         } else {
-            currentRadioStation = 9;
+            currentRadioStation = maxNumberStation-1;
         }
     }
 
     public void setCurrentVolume(int currentVolume) {
-        if (currentVolume > 10) {
+        if (currentVolume > 100) {
             return;
         }
         if (currentVolume <= 0) {
@@ -49,10 +63,10 @@ public class Radio {
     }
 
     public void setCurrentVolumeUp() {
-        if (currentVolume < 10) {
+        if (currentVolume < 100) {
             currentVolume++;
         } else {
-            currentVolume = 10;
+            currentVolume = 100;
         }
     }
 
@@ -61,6 +75,7 @@ public class Radio {
             currentVolume--;
         } else {
             currentVolume = 0;
+
         }
     }
 }
