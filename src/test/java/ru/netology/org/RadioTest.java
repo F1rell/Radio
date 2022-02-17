@@ -2,7 +2,8 @@ package ru.netology.org;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class RadioTest {
 
@@ -10,14 +11,14 @@ public class RadioTest {
     public void thisTestNeedFor100Covered() {
         Radio radio = new Radio(50);
         radio.setCurrentRadioStation(50);
-        assertEquals(50, radio.getMaxNumberStation());
+        assertEquals(49, radio.getMaxNumberStation());
     }
 
     @Test
     public void enterStation() {
         Radio radio = new Radio(50);
         radio.setCurrentRadioStation(50);
-        assertEquals(50, radio.getCurrentRadioStation());
+        assertEquals(49, radio.getCurrentRadioStation());
     }
 
     @Test

@@ -32,6 +32,11 @@ public class Radio {
         if (currentRadioStation <= 0) {
             return;
         }
+
+        if (currentRadioStation == maxNumberStation) {
+            currentRadioStation = maxNumberStation--;
+            currentRadioStation = maxNumberStation;
+        }
         this.currentRadioStation = currentRadioStation;
     }
 
@@ -39,6 +44,11 @@ public class Radio {
         if (currentRadioStation < maxNumberStation) {
             currentRadioStation++;
         }
+        if (currentRadioStation == maxNumberStation) {
+            currentRadioStation = maxNumberStation--;
+            currentRadioStation = maxNumberStation;
+        }
+
         if (currentRadioStation == maxNumberStation) {
             currentRadioStation = 0;
         }
@@ -48,7 +58,7 @@ public class Radio {
         if (currentRadioStation > 0) {
             currentRadioStation--;
         } else {
-            currentRadioStation = maxNumberStation-1;
+            currentRadioStation = maxNumberStation - 1;
         }
     }
 
