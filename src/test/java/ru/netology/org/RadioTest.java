@@ -2,151 +2,87 @@ package ru.netology.org;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-
-public class RadioTest {
-
+class RadioTest {
     @Test
-    public void thisTestNeedFor100Covered() {
-        Radio radio = new Radio(50);
-        radio.setCurrentRadioStation(50);
-        assertEquals(49, radio.getMaxNumberStation());
+    public void numberRadioChannel() {
+        Radio cond = new Radio(5);
+        cond.setNumberRadioChannel();
+        assertEquals(5, cond.getNumberRadioChannel());
     }
 
     @Test
-    public void enterStation() {
-        Radio radio = new Radio(50);
-        radio.setCurrentRadioStation(50);
-        assertEquals(49, radio.getCurrentRadioStation());
+    public void numberRadioChannelAboveInterval() {
+        Radio cond = new Radio(11);
+        cond.setNumberRadioChannel();
+        assertEquals(10, cond.getNumberRadioChannel());
     }
 
     @Test
-    public void enterStationIfCurrentStationMoreLimit() {
-        Radio radio = new Radio(50);
-        radio.setCurrentRadioStation(51);
-        assertEquals(0, radio.getCurrentRadioStation());
+    public void currentRadioStation() {
+        Radio cond = new Radio(1);
+        cond.setCurrentRadioStation();
+        assertEquals(0, cond.getCurrentRadioStation());
     }
 
     @Test
-    public void enterStationIfCurrentStationNotCorrect() {
-        Radio radio = new Radio(50);
-        radio.setCurrentRadioStation(0);
-        assertEquals(0, radio.getCurrentRadioStation());
+    public void nextRadioStationDefaultLimitRadioChannel() {
+        Radio cond = new Radio();
+        cond.setNextRadioStation(9);
+        assertEquals(0, cond.getNextRadioStation());
     }
 
     @Test
-    public void nextStation() {
-        Radio radio = new Radio(50);
-        radio.setCurrentRadioStation(5);
-        radio.setNextRadioStation();
-        assertEquals(6, radio.getCurrentRadioStation());
+    public void nextRadioStationLimitSetRadioChannel() {
+        Radio cond = new Radio(20);
+        cond.setNumberRadioChannel();
+        cond.setNextRadioStation(0);
+        assertEquals(1, cond.getNextRadioStation());
     }
 
     @Test
-    public void nextStationTestForCoveredBranch() {
-        Radio radio = new Radio(50);
-        radio.setCurrentRadioStation(49);
-        radio.setNextRadioStation();
-        assertEquals(0, radio.getCurrentRadioStation());
+    public void prevRadioStationDefaultLimitRadioChannel() {
+        Radio cond = new Radio();
+        cond.setPrevRadioStation(9);
+        assertEquals(8, cond.getPrevRadioStation());
     }
 
     @Test
-    public void nextStationTestForCoveredBranch2() {
-        Radio radio = new Radio(50);
-        radio.setCurrentRadioStation(50);
-        radio.setNextRadioStation();
-        assertEquals(0, radio.getCurrentRadioStation());
+    public void prevRadioStation20Chanel() {
+        Radio cond = new Radio(20);
+        cond.setCurrentRadioStation();
+        cond.setPrevRadioStation(0);
+        assertEquals(9, cond.getPrevRadioStation());
     }
 
     @Test
-    public void nextStationIfCurrentStationMoreMaxLimit() {
-        Radio radio = new Radio(30);
-        radio.setCurrentRadioStation(49);
-        radio.setNextRadioStation();
-        assertEquals(1, radio.getCurrentRadioStation());
+    public void currentSoundVolume() {
+        Radio cond = new Radio();
+        cond.setCurrentSoundVolume(101);
+        assertEquals(100, cond.getCurrentSoundVolume());
     }
 
     @Test
-    public void prevStation() {
-        Radio radio = new Radio(50);
-        radio.setCurrentRadioStation(30);
-        radio.setPrevRadioStation();
-        assertEquals(29, radio.getCurrentRadioStation());
+    public void currentSoundVolumeBelowLimit() {
+        Radio cond = new Radio();
+        cond.setCurrentSoundVolume(-1);
+        assertEquals(0, cond.getCurrentSoundVolume());
     }
 
     @Test
-    public void prevStationIfCurrentStationF1rst() {
-        Radio radio = new Radio(50);
-        radio.setCurrentRadioStation(0);
-        radio.setPrevRadioStation();
-        assertEquals(49, radio.getCurrentRadioStation());
+    public void nextSoundVolumeDefaultLimit() {
+        Radio cond = new Radio();
+        cond.nextSoundVolume();
+        cond.setCurrentSoundVolume(100);
+        assertEquals(100, cond.getCurrentSoundVolume());
     }
 
     @Test
-    public void testVolumeFoCovered() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(5);
-        assertEquals(5, radio.getCurrentVolume());
-    }
-
-    @Test
-    public void volumeLevelForTestBranch1() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(101);
-        assertEquals(0, radio.getCurrentRadioStation());
-    }
-
-    @Test
-    public void volumeLevelForTestBranch2() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(0);
-        assertEquals(0, radio.getCurrentVolume());
-    }
-
-    @Test
-    public void volumeLevelUp() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(3);
-        radio.setCurrentVolumeUp();
-        assertEquals(4, radio.getCurrentVolume());
-    }
-
-    @Test
-    public void volumeLevelUpIfVolumeLevelMax() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(100);
-        radio.setCurrentVolumeUp();
-        assertEquals(100, radio.getCurrentVolume());
-    }
-
-    @Test
-    public void volumeLevelDown() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(4);
-        radio.setCurrentVolumeDown();
-        assertEquals(radio.getCurrentVolume(), radio.getCurrentVolume()); //допустима ли такая запись?
-    }
-
-    @Test
-    public void volumeLevelDownIfVolumLevelZero() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(0);
-        radio.setCurrentVolumeDown();
-        assertEquals(0, radio.getCurrentVolume());
-    }
-
-    @Test
-    public void ifDefaultConstructor() {
-        Radio radio = new Radio();
-        radio.setCurrentRadioStation(9);
-        assertEquals(9, radio.getCurrentRadioStation());
-    }
-
-    @Test
-    public void ifDefaultConstructorMoreDefaulMaxStation() {
-        Radio radio = new Radio();
-        radio.setCurrentRadioStation(11);
-        assertEquals(0, radio.getCurrentRadioStation());
+    public void prevSoundVolume() {
+        Radio cond = new Radio();
+        cond.setCurrentSoundVolume(1);
+        cond.prevSoundVolume();
+        assertEquals(0, cond.getCurrentSoundVolume());
     }
 }
