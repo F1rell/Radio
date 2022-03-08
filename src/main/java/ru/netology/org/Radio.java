@@ -1,91 +1,79 @@
 package ru.netology.org;
 
 public class Radio {
-
-    private int numberRadioChannel = 10;
     private int currentRadioStation;
-    private int nextRadioStation;
-    private int prevRadioStation;
-    private int currentSoundVolume = 100;
+    private int currentVolume;
+    private int maxDefaultStation;
+    private int maxVolumeLevel = 100;
+
+    public Radio(int maxDefaultStation) {
+        this.maxDefaultStation = maxDefaultStation;
+    }
 
     public Radio() {
-    }
-
-    public Radio(int numberRadioChannel) {
-        this.numberRadioChannel = numberRadioChannel;
-    }
-
-    public int getNumberRadioChannel() {
-        return numberRadioChannel;
-    }
-
-    public int setNumberRadioChannel() {
-        if (numberRadioChannel < 10) {
-            numberRadioChannel = numberRadioChannel;
-        }
-        if (numberRadioChannel >= 10) {
-            numberRadioChannel = 10;
-        }
-        this.numberRadioChannel = numberRadioChannel;
-        return numberRadioChannel;
+        maxDefaultStation = 10;
     }
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
 
-    public void setCurrentRadioStation() {
-        setNumberRadioChannel();
-        currentRadioStation = numberRadioChannel - 1;
-        this.currentRadioStation = currentRadioStation;
+    public int getCurrentVolume() {
+        return currentVolume;
     }
 
-    public int getNextRadioStation() {
-        return nextRadioStation;
-    }
+    public void setCurrentRadioStation(int newCurrentRadioStation) {
 
-    public void setNextRadioStation(int currentRadioStation) {
-        nextRadioStation = currentRadioStation + 1;
-        if (nextRadioStation >= numberRadioChannel - 1) {
-            nextRadioStation = 0;
+        if (newCurrentRadioStation <= 0) {
+            return;
         }
-        nextRadioStation = nextRadioStation;
+        if (newCurrentRadioStation > maxDefaultStation - 1) {
+            this.currentRadioStation = maxDefaultStation - 1;
+            return;
+        }
+        this.currentRadioStation = newCurrentRadioStation;
     }
 
-    public int getPrevRadioStation() {
-        return prevRadioStation;
+    public void setNextRadioStation() {
+        if (currentRadioStation == maxDefaultStation - 1) {
+            setCurrentRadioStation(0);
+            return;
+        }
+        currentRadioStation = currentRadioStation+1;
     }
 
-    public void setPrevRadioStation(int currentRadioStation) {
-        prevRadioStation = currentRadioStation - 1;
-        if (prevRadioStation < 0) {
-            prevRadioStation = numberRadioChannel - 1;
+    public void setPrevRadioStation() {
+        if (currentRadioStation == 0) {
+            setCurrentRadioStation(maxDefaultStation - 1);
+            return;
+        }
+        currentRadioStation = currentRadioStation - 1;
+        setCurrentRadioStation(currentRadioStation);
+    }
+
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume > maxVolumeLevel) {
+            return;
+        }
+        if (currentVolume <= 0) {
+            return;
+        }
+        this.currentVolume = currentVolume;
+    }
+
+    public void setCurrentVolumeUp() {
+        if (currentVolume < maxVolumeLevel) {
+            currentVolume++;
+        } else {
+            currentVolume = maxVolumeLevel;
         }
     }
 
-    public int getCurrentSoundVolume() {
-        return currentSoundVolume;
-    }
-
-    public void setCurrentSoundVolume(int currentSoundVolume) {
-        if (currentSoundVolume > 100) {
-            currentSoundVolume = 100;
+    public void setCurrentVolumeDown() {
+        if (currentVolume > 0) {
+            currentVolume--;
+        } else {
+            currentVolume = 0;
         }
-        if (currentSoundVolume < 0) {
-            currentSoundVolume = 0;
-        }
-        this.currentSoundVolume = currentSoundVolume;
-    }
-
-    public void nextSoundVolume() {
-        int nextSoundVolume = currentSoundVolume + 1;
-        currentSoundVolume = nextSoundVolume;
-
-    }
-
-    public void prevSoundVolume() {
-        int prevSoundVolume = currentSoundVolume - 1;
-        currentSoundVolume = prevSoundVolume;
-
     }
 }
